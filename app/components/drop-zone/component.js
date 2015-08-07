@@ -7,10 +7,6 @@ export default Ember.Component.extend({
 
   dragOver(event) {
     event.preventDefault();
-  },
-
-  dragOver(event) {
-    event.preventDefault();
     this.set('receptive', true);
   },
 

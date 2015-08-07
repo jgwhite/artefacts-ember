@@ -31,7 +31,7 @@ body {
 .authenticated__main {
   position: relative;
   box-sizing: border-box;
-  padding-top: 32px;
+  padding-top: 33px;
   height: 100%;
 }
 
@@ -102,8 +102,6 @@ artefact-thumb {
   padding: 8px;
   width: 25%;
   box-sizing: border-box;
-  border: 1px solid #eee;
-  margin: 0 0 -1px -1px;
 }
 
 .artefact-thumb__img-container {
