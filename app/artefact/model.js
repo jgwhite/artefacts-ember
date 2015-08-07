@@ -1,6 +1,7 @@
 import DS from 'ember-data';
-const { Model, belongsTo } = DS;
+const { Model, attr, belongsTo } = DS;
 
 export default DS.Model.extend({
-  project: belongsTo('project', { async: true })
+  project: belongsTo('project', { async: true }),
+  createdAt: attr('date')
 });

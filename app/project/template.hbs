@@ -4,6 +4,9 @@
 
 <ul>
   {{#each model.artefacts as |artefact|}}
-    <li>{{artefact.file.name}}</li>
+    <li>
+      {{artefact.file.name}}
+      ({{artefact.createdAt}})
+    </li>
   {{/each}}
 </ul>
