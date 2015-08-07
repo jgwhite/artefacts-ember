@@ -1,3 +1,9 @@
 <h1>{{model.name}}</h1>
 
 {{file-input on-add="addFile"}}
+
+<ul>
+  {{#each model.artefacts as |artefact|}}
+    <li>{{artefact.file.name}}</li>
+  {{/each}}
+</ul>

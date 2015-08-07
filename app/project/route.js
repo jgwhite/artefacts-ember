@@ -9,7 +9,7 @@ export default Ember.Route.extend({
       let store = this.get('store');
       let project = this.modelFor('project');
 
-      store.createRecord('artefact', { file, project });
+      store.createRecord('artefact', { project, file });
     }
   }
 });
