@@ -1,1 +1,12 @@
-{{outlet}}
+<header>
+  <nav>
+    <ul>
+      <li>{{link-to "Projects" "projects"}}</li>
+      <li><a href="#" {{action "signOut"}}>Sign out</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  {{outlet}}
+</main>
