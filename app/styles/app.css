@@ -1,0 +1,8 @@
+artefact-thumb {}
+
+.artefact-thumb__img-container {
+  width: 128px; height: 128px;
+}
+.artefact-thumb__img {
+  max-width: 100%; max-height: 100%;
+}

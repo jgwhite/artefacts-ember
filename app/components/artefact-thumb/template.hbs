@@ -1,0 +1,13 @@
+<div class="artefact-thumb__img-container">
+  {{#if artefact.file}}
+    {{file-preview
+      file=artefact.file
+      class="artefact-thumb__img"}}
+  {{else if artefact.url}}
+    <img src="{{artefact.url}}" class="artefact-thumb__img">
+  {{/if}}
+</div>
+
+<div class="artefact-thumb__created-at">
+  {{moment-format artefact.createdAt}}
+</div>

@@ -4,6 +4,12 @@ const { inject } = Ember;
 export default Ember.Route.extend({
   store: inject.service(),
 
+  model(params) {
+    let store = this.get('store');
+
+    return store.findRecord('project', params.project_id);
+  },
+
   actions: {
     addFile(file) {
       let store = this.get('store');
