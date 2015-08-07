@@ -6,7 +6,7 @@
   {{#each model.artefacts as |artefact|}}
     <li>
       {{artefact.file.name}}
-      ({{artefact.createdAt}})
+      ({{moment-format artefact.createdAt}})
     </li>
   {{/each}}
 </ul>
