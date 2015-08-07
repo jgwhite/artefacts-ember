@@ -1,12 +1,26 @@
-<header>
-  <nav>
-    <ul>
-      <li>{{link-to "Projects" "projects"}}</li>
-      <li><a href="#" {{action "signOut"}}>Sign out</a></li>
-    </ul>
-  </nav>
-</header>
+<section class="authenticated">
+  <header class="authenticated__header">
+    <nav class="authenticated__header-nav">
+      <ul class="authenticated__header-nav-list">
+        <li class="authenticated__header-nav-list-item">
+          <b>{{link-to "Home" "authenticated.index"
+               class="authenticated__header-nav-link"
+               activeClass="authenticated__header-nav-link--active"}}</b>
+        </li>
+        <li class="authenticated__header-nav-list-item">
+          {{link-to "Projects" "projects"
+             class="authenticated__header-nav-link"
+             activeClass="authenticated__header-nav-link--active"}}
+        </li>
+      </ul>
+    </nav>
 
-<main>
-  {{outlet}}
-</main>
+    {{portal-for name="header" class="authenticated__header-portal"}}
+
+    <button {{action "signOut"}} class="authenticated__header-sign-out-button">Sign out</button>
+  </header>
+
+  <main class="authenticated__main">
+    {{outlet}}
+  </main>
+</section>

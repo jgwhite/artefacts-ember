@@ -1,13 +1,11 @@
-<h1>{{model.name}}</h1>
+{{#portal-content for="header"}}
+  <div class="header__project-name">{{model.name}}</div>
+{{/portal-content}}
 
-{{file-input multiple=true on-add="addFile"}}
-
-<ul>
+{{#drop-zone on-drop="addFile" class="project__drop-zone"}}
   {{#each model.artefacts key="@index" as |artefact|}}
-    <li>
-      {{artefact-thumb
-         artefact=artefact
-         on-remove="removeArtefact"}}
-    </li>
+    {{artefact-thumb
+       artefact=artefact
+       on-remove="removeArtefact"}}
   {{/each}}
-</ul>
+{{/drop-zone}}

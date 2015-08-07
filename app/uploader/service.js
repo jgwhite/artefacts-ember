@@ -1,14 +1,12 @@
 import Ember from 'ember';
-const { inject } = Ember;
+const { Service } = Ember;
 const Promise = Ember.RSVP.Promise;
 const BASE_URL = 'https://artefacts-app.s3.amazonaws.com/';
 
-export default Ember.Service.extend({
+export default Service.extend({
   upload(file, key = file.name) {
     return new Promise((resolve, reject) => {
-      let reader = new FileReader();
       let s3 = new AWS.S3();
-      let body = reader.result;
       let options = {
         Bucket: 'artefacts-app',
         Key: key,

@@ -9,9 +9,9 @@
 </div>
 
 {{#if artefact.file}}
-  <em class="artefact-thumb__uploading">
-    Uploading…
-  </em>
+  <div class="artefact-thumb__uploading">
+    <em>Uploading…</em>
+  </div>
 {{else}}
   <div class="artefact-thumb__created-at">
     {{moment-format artefact.createdAt}}
