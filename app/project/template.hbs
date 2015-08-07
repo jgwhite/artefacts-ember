@@ -1,6 +1,6 @@
 <h1>{{model.name}}</h1>
 
-{{file-input on-add="addFile"}}
+{{file-input multiple=true on-add="addFile"}}
 
 <ul>
   {{#each model.artefacts as |artefact|}}

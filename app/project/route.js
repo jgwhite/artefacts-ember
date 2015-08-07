@@ -21,13 +21,15 @@ export default Ember.Route.extend({
         createdAt: new Date(),
         file
       });
+      let key = artefact.get('id') + '/' + file.name;
 
-      uploader.upload(file).then(url => {
-        artefact.set('file', null);
-        artefact.set('url', url);
-        artefact.save();
-        project.save();
-      });
+      uploader.upload(file, key)
+        .then(url => {
+          artefact.set('file', null);
+          artefact.set('url', url);
+        })
+        .then(() => artefact.save())
+        .then(() => project.save());
     }
   }
 });

@@ -3,11 +3,10 @@ const { inject } = Ember;
 const Promise = Ember.RSVP.Promise;
 
 export default Ember.Service.extend({
-  upload(file) {
+  upload(file, key = file.name) {
     return new Promise((resolve, reject) => {
       let reader = new FileReader();
       let s3 = new AWS.S3();
-      let key = file.name;
       let body = reader.result;
 
       s3.putObject({
