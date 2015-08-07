@@ -3,6 +3,7 @@ const { inject } = Ember;
 
 export default Ember.Route.extend({
   store: inject.service(),
+  uploader: inject.service(),
 
   model(params) {
     let store = this.get('store');
@@ -13,10 +14,20 @@ export default Ember.Route.extend({
   actions: {
     addFile(file) {
       let store = this.get('store');
+      let uploader = this.get('uploader');
       let project = this.modelFor('project');
-      let createdAt = new Date();
+      let artefact = store.createRecord('artefact', {
+        project,
+        createdAt: new Date(),
+        file
+      });
 
-      store.createRecord('artefact', { project, createdAt, file });
+      uploader.upload(file).then(url => {
+        artefact.set('file', null);
+        artefact.set('url', url);
+        artefact.save();
+        project.save();
+      });
     }
   }
 });
