@@ -1,0 +1,29 @@
+{{#x-form on-submit="signIn"}}
+  <p>
+    {{#if model.error}}
+      {{model.error}}
+    {{else}}
+      Hello, please sign in:
+    {{/if}}
+  </p>
+
+  <div>
+    <label>Email</label>
+    <input type="email" name="email">
+  </div>
+
+  <div>
+    <label>Password</label>
+    <input type="password" name="password">
+  </div>
+
+  <div>
+    <button type="submit" disabled={{model.busy}}>
+      {{#if model.busy}}
+        Signing in…
+      {{else}}
+        Sign in
+      {{/if}}
+    </button>
+  </div>
+{{/x-form}}
