@@ -5,7 +5,9 @@
 <ul>
   {{#each model.artefacts as |artefact|}}
     <li>
-      {{artefact-thumb artefact=artefact}}
+      {{artefact-thumb
+         artefact=artefact
+         on-remove="removeArtefact"}}
     </li>
   {{/each}}
 </ul>

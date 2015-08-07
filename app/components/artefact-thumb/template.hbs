@@ -8,6 +8,14 @@
   {{/if}}
 </div>
 
-<div class="artefact-thumb__created-at">
-  {{moment-format artefact.createdAt}}
-</div>
+{{#if artefact.file}}
+  <em class="artefact-thumb__uploading">
+    Uploading…
+  </em>
+{{else}}
+  <div class="artefact-thumb__created-at">
+    {{moment-format artefact.createdAt}}
+  </div>
+{{/if}}
+
+<button {{action "remove"}}>Remove</button>

@@ -30,6 +30,11 @@ export default Ember.Route.extend({
         })
         .then(() => artefact.save())
         .then(() => project.save());
+    },
+
+    removeArtefact(artefact) {
+      artefact.destroyRecord();
+      artefact.save();
     }
   }
 });
