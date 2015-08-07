@@ -1,6 +1,7 @@
 import Ember from 'ember';
 const { inject } = Ember;
 const Promise = Ember.RSVP.Promise;
+const BASE_URL = 'https://artefacts-app.s3.amazonaws.com/';
 
 export default Ember.Service.extend({
   upload(file, key = file.name) {
@@ -8,18 +9,38 @@ export default Ember.Service.extend({
       let reader = new FileReader();
       let s3 = new AWS.S3();
       let body = reader.result;
-
-      s3.putObject({
+      let options = {
         Bucket: 'artefacts-app',
         Key: key,
         Body: file,
         ACL: 'public-read'
-      }, (err, data) => {
-        if (err) {
-          reject();
+      };
+
+      s3.putObject(options, error => {
+        if (error) {
+          reject(error);
         } else {
-          let url = 'https://artefacts-app.s3.amazonaws.com/' + key;
+          let url = BASE_URL + key;
           resolve(url);
+        }
+      });
+    });
+  },
+
+  delete(url) {
+    return new Promise((resolve, reject) => {
+      let key = url.replace(BASE_URL, '');
+      let s3 = new AWS.S3();
+      let options = {
+        Bucket: 'artefacts-app',
+        Key: key
+      };
+
+      s3.deleteObject(options, error => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve();
         }
       });
     });

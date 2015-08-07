@@ -3,7 +3,7 @@
 {{file-input multiple=true on-add="addFile"}}
 
 <ul>
-  {{#each model.artefacts as |artefact|}}
+  {{#each model.artefacts key="@index" as |artefact|}}
     <li>
       {{artefact-thumb
          artefact=artefact

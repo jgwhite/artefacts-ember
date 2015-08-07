@@ -33,6 +33,11 @@ export default Ember.Route.extend({
     },
 
     removeArtefact(artefact) {
+      let url = artefact.get('url');
+      let uploader = this.get('uploader');
+
+      uploader.delete(url);
+
       artefact.destroyRecord();
       artefact.save();
     }
