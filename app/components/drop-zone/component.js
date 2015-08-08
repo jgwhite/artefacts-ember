@@ -23,8 +23,6 @@ export default Ember.Component.extend({
 
     let files = get(event, 'dataTransfer.files') || [];
 
-    for (let i = 0; i < files.length; i++) {
-      this.sendAction('on-drop', files[i]);
-    }
+    this.sendAction('on-drop', files);
   }
 });

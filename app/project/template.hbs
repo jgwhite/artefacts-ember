@@ -2,7 +2,7 @@
   <div class="header__project-name">{{model.name}}</div>
 {{/portal-content}}
 
-{{#drop-zone on-drop="addFile" class="project__drop-zone"}}
+{{#drop-zone on-drop="addFiles" class="project__drop-zone"}}
   {{#each model.artefacts key="@index" as |artefact|}}
     {{artefact-thumb
        artefact=artefact

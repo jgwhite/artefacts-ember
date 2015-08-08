@@ -1,5 +1,5 @@
 import Ember from 'ember';
-const { inject } = Ember;
+const { RSVP, inject } = Ember;
 
 export default Ember.Route.extend({
   store: inject.service(),
@@ -12,24 +12,19 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    addFile(file) {
+    addFiles(files) {
       let store = this.get('store');
       let uploader = this.get('uploader');
       let project = this.modelFor('project');
-      let artefact = store.createRecord('artefact', {
-        project,
-        createdAt: new Date(),
-        file
-      });
-      let key = artefact.get('id') + '/' + file.name;
+      let promises = [];
 
-      uploader.upload(file, key)
-        .then(url => {
-          artefact.set('file', null);
-          artefact.set('url', url);
-        })
-        .then(() => artefact.save())
-        .then(() => project.save());
+      for (let i = 0; i < files.length; i++) {
+        let file = files[i];
+        let promise = createArtefactFromFile(file, store, project, uploader);
+        promises.push(promise);
+      }
+
+      RSVP.all(promises).then(() => project.save());
     },
 
     removeArtefact(artefact) {
@@ -43,3 +38,19 @@ export default Ember.Route.extend({
     }
   }
 });
+
+function createArtefactFromFile(file, store, project, uploader) {
+  let artefact = store.createRecord('artefact', {
+    project,
+    file,
+    createdAt: new Date()
+  });
+  let key = artefact.get('id') + '/' + file.name;
+
+  return uploader.upload(file, key)
+    .then(url => {
+      artefact.set('file', null);
+      artefact.set('url', url);
+    })
+    .then(() => artefact.save());
+}
