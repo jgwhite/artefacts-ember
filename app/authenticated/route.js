@@ -3,12 +3,15 @@ const { inject } = Ember;
 
 export default Ember.Route.extend({
   firebase: inject.service(),
+  retry: inject.service(),
 
-  beforeModel() {
+  beforeModel(transition) {
     let firebase = this.get('firebase');
     let auth = firebase.getAuth();
 
     if (!auth) {
+      this.set('retry.transition', transition);
+
       this.replaceWith('sign-in');
     }
   },

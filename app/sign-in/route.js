@@ -3,6 +3,7 @@ const { inject } = Ember;
 
 export default Ember.Route.extend({
   firebase: inject.service(),
+  retry: inject.service(),
 
   model() {
     return {
@@ -23,7 +24,14 @@ export default Ember.Route.extend({
         if (error) {
           this.set('currentModel.error', error);
         } else {
-          this.transitionTo('authenticated');
+          let transition = this.get('retry.transition');
+          this.set('retry.transition', null);
+
+          if (transition) {
+            transition.retry();
+          } else {
+            this.transitionTo('authenticated');
+          }
         }
       });
     }
