@@ -1,5 +1,11 @@
 import Ember from 'ember';
 
+const parsers = {
+  date(input) {
+    return moment(input).toDate();
+  }
+};
+
 export default Ember.Component.extend({
   tagName: 'form',
 
@@ -15,7 +21,14 @@ export default Ember.Component.extend({
 
 function fieldsAsObject(fields) {
   return fields.reduce((result, { name, value }) => {
-    result[name] = value;
+    let [key,type] = name.split(':');
+
+    if (type) {
+      value = parsers[type](value);
+    }
+
+    result[key] = value;
+
     return result;
   }, {});
 }

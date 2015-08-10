@@ -98,14 +98,14 @@ body {
 
 artefact-thumb {
   display: block;
-  float: left;
   padding: 8px;
-  width: 25%;
   box-sizing: border-box;
+  text-align: center;
 }
 
 .artefact-thumb__img-container {
   width: 128px; height: 128px;
+  margin: 0 auto;
 }
 .artefact-thumb__img {
   max-width: 100%; max-height: 100%;

@@ -11,6 +11,10 @@ export default Ember.Route.extend({
     return store.findRecord('project', params.project_id);
   },
 
+  afterModel(model) {
+    return model.get('artefacts');
+  },
+
   actions: {
     addFiles(files) {
       let store = this.get('store');
@@ -25,14 +29,6 @@ export default Ember.Route.extend({
       }
 
       RSVP.all(promises).then(() => project.save());
-    },
-
-    saveArtefact(artefact) {
-      artefact.save();
-    },
-
-    rollbackArtefact(artefact) {
-      artefact.rollbackAttributes();
     },
 
     viewArtefact(artefact) {

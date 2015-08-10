@@ -4,6 +4,7 @@ export default Ember.Component.extend({
   tagName: 'artefact-thumb',
 
   artefact: null,
+  isEditing: false,
 
   actions: {
     view() {
@@ -12,16 +13,19 @@ export default Ember.Component.extend({
       this.sendAction('on-view', artefact);
     },
 
-    save() {
-      let artefact = this.get('artefact');
-
-      this.sendAction('on-save', artefact);
+    edit() {
+      this.set('isEditing', true);
     },
 
-    rollback() {
+    cancel() {
+      this.set('isEditing', false);
+    },
+
+    update(attrs) {
       let artefact = this.get('artefact');
 
-      this.sendAction('on-rollback', artefact);
+      artefact.setProperties(attrs);
+      artefact.save();
     },
 
     remove() {

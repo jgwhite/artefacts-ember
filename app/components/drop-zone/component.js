@@ -5,9 +5,16 @@ export default Ember.Component.extend({
   tagName: 'drop-zone',
   classNameBindings: ['receptive:drop-zone--receptive'],
 
+  dragEnter(event) {
+    let types = event.dataTransfer.types;
+
+    if (types.contains('Files')) {
+      this.set('receptive', true);
+    }
+  },
+
   dragOver(event) {
     event.preventDefault();
-    this.set('receptive', true);
   },
 
   dragLeave(event) {
