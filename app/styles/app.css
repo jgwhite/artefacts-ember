@@ -73,7 +73,7 @@ body {
 .header__project-name {
   display: block;
   padding: 4px 8px;
-  background: #ccc;
+  background: #eee;
 }
 
 .authenticated__header-sign-out-button {
@@ -127,6 +127,14 @@ artefact-thumb {
 
 .project__name {
   margin: 0;
+}
+
+.project__week-header {
+  font-size: 1rem;
+  padding: 8px;
+  margin: 0;
+  background: #eee;
+  clear: both;
 }
 
 artefact-viewer {

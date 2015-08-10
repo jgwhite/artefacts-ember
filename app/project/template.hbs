@@ -3,14 +3,22 @@
 {{/portal-content}}
 
 {{#drop-zone on-drop="addFiles" class="project__drop-zone"}}
-  {{#each model.artefacts key="@index" as |artefact|}}
-    {{artefact-thumb
-       artefact=artefact
-       on-view="viewArtefact"
-       on-save="saveArtefact"
-       on-rollback="rollbackArtefact"
-       on-remove="removeArtefact"}}
-  {{/each}}
+  {{#group-by-week items=model.artefacts as |week items|}}
+    <h3 class="project__week-header">
+      Week: {{moment-format week.date "D MMM YYYY"}}
+    </h3>
+
+    <div class="project__week-artefacts">
+      {{#each items as |item|}}
+        {{artefact-thumb
+           artefact=item
+           on-view="viewArtefact"
+           on-save="saveArtefact"
+           on-rollback="rollbackArtefact"
+           on-remove="removeArtefact"}}
+      {{/each}}
+    </div>
+  {{/group-by-week}}
 {{/drop-zone}}
 
 {{outlet}}
