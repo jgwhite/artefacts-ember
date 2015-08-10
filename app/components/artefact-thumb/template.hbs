@@ -13,17 +13,8 @@
     {{#if artefact.file}}
       <em>Uploading…</em>
     {{else}}
-      <div>
-        <label>Date</label>
-        {{pikaday-input
-          value=artefact.createdAt
-          format="DD/MM/YYYY"}}
-      </div>
-
-      <div>
-        <label>Tag</label>
-        {{input type="text" value=artefact.tag}}
-      </div>
+      {{moment-format artefact.createdAt}}
+      {{input type="text" value=artefact.tag placeholder="Tag"}}
     {{/if}}
   </div>
 
