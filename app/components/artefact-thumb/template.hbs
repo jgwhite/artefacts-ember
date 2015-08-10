@@ -2,26 +2,19 @@
   <div class="artefact-thumb__img-container">
     {{#if artefact.file}}
       {{file-preview
-        file=artefact.file
+        file=attrs.artefact.file
         class="artefact-thumb__img"}}
     {{else if artefact.url}}
       <img src="{{artefact.url}}" class="artefact-thumb__img">
     {{/if}}
   </div>
 
-  <div class="artefact-thumb__meta">
-    {{#if artefact.file}}
+  {{#if artefact.file}}
+    <div class="artefact-thumb__meta">
       <em>Uploading…</em>
-    {{else}}
-      {{moment-format artefact.createdAt}}<br>
-      {{input type="text" value=artefact.tag placeholder="Tag"}}
-    {{/if}}
-  </div>
-
-  {{#if artefact.hasDirtyAttributes}}
-    <button type="submit">Save</button>
-    <button {{action "rollback"}}>Reset</button>
+    </div>
   {{/if}}
+
   <button {{action "view"}}>View</button>
   <button {{action "remove"}}>Remove</button>
 </form>
