@@ -4,5 +4,6 @@ const { Model, attr, belongsTo } = DS;
 export default Model.extend({
   project: belongsTo('project', { async: true }),
   createdAt: attr('date'),
-  url: attr('string')
+  url: attr('string'),
+  tag: attr('string')
 });

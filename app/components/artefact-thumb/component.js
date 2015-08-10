@@ -12,6 +12,18 @@ export default Ember.Component.extend({
       this.sendAction('on-view', artefact);
     },
 
+    save() {
+      let artefact = this.get('artefact');
+
+      this.sendAction('on-save', artefact);
+    },
+
+    rollback() {
+      let artefact = this.get('artefact');
+
+      this.sendAction('on-rollback', artefact);
+    },
+
     remove() {
       let artefact = this.get('artefact');
 
