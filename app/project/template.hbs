@@ -6,25 +6,25 @@
 {{/portal-content}}
 
 {{#drop-zone on-drop="addFiles" class="project__drop-zone"}}
-  <table>
+  <table class="artefact-table">
     <tbody>
-      {{#group-by-week-and-tag items=model.artefacts as |weeks|}}
+      {{#group-by-week-and-tag items=model.artefacts as |weeks tags|}}
+        {{#sticky-element tagName="tr"}}
+          {{#each tags as |tag|}}
+            <th class="artefact-table__tag-heading" style="width: {{math-divide 100 tags.length}}%">
+              {{tag}}
+            </th>
+          {{/each}}
+        {{/sticky-element}}
         {{#each weeks key="id" as |week|}}
           <tr>
-            <th>
+            <th class="artefact-table__week-heading" colspan={{tags.length}}>
               Week: {{moment-format week.date "D MMM YYYY"}}
             </th>
           </tr>
           <tr>
             {{#each week.tags key="name" as |tag|}}
-              <th>
-                {{tag.name}}
-              </th>
-            {{/each}}
-          </tr>
-          <tr>
-            {{#each week.tags key="name" as |tag|}}
-              <td>
+              <td class="artefact-table__cell">
                 {{#each tag.items as |item|}}
                   {{artefact-thumb
                      artefact=item

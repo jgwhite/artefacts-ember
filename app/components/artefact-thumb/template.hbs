@@ -1,4 +1,4 @@
-<div class="artefact-thumb__img-container">
+<div class="artefact-thumb__img-container" {{action "view"}}>
   {{#if artefact.file}}
     {{file-preview
       file=attrs.artefact.file
@@ -14,7 +14,6 @@
   </div>
 {{/if}}
 
-<button {{action "view"}}>View</button>
 {{#if isEditing}}
   <button {{action "cancel"}}>Cancel</button>
 {{else}}
