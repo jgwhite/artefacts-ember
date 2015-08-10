@@ -13,7 +13,7 @@
     {{#if artefact.file}}
       <em>Uploading…</em>
     {{else}}
-      {{moment-format artefact.createdAt}}
+      {{moment-format artefact.createdAt}}<br>
       {{input type="text" value=artefact.tag placeholder="Tag"}}
     {{/if}}
   </div>
