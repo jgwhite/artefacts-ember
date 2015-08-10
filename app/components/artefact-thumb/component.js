@@ -6,6 +6,12 @@ export default Ember.Component.extend({
   artefact: null,
 
   actions: {
+    view() {
+      let artefact = this.get('artefact');
+
+      this.sendAction('on-view', artefact);
+    },
+
     remove() {
       let artefact = this.get('artefact');
 

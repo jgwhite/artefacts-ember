@@ -1,0 +1,9 @@
+<div class="artefact-viewer__img-container">
+  {{#if artefact.file}}
+    {{file-preview
+      file=artefact.file
+      class="artefact-viewer__img"}}
+  {{else if artefact.url}}
+    <img src="{{artefact.url}}" class="artefact-viewer__img">
+  {{/if}}
+</div>

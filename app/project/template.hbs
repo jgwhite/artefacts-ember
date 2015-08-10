@@ -6,6 +6,9 @@
   {{#each model.artefacts key="@index" as |artefact|}}
     {{artefact-thumb
        artefact=artefact
+       on-view="viewArtefact"
        on-remove="removeArtefact"}}
   {{/each}}
 {{/drop-zone}}
+
+{{outlet}}

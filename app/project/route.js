@@ -27,6 +27,14 @@ export default Ember.Route.extend({
       RSVP.all(promises).then(() => project.save());
     },
 
+    viewArtefact(artefact) {
+      this.transitionTo('project.artefact', artefact);
+    },
+
+    closeArtefact() {
+      this.transitionTo('project');
+    },
+
     removeArtefact(artefact) {
       let url = artefact.get('url');
       let uploader = this.get('uploader');
@@ -43,7 +51,7 @@ function createArtefactFromFile(file, store, project, uploader) {
   let artefact = store.createRecord('artefact', {
     project,
     file,
-    createdAt: new Date()
+    createdAt: file.lastModifiedDate || new Date()
   });
   let key = artefact.get('id') + '/' + file.name;
 
