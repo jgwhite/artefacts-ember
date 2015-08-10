@@ -1,7 +1,8 @@
 import Ember from 'ember';
-const { Component, computed, isEmpty } = Ember;
+import moment from 'moment';
+const { Component, computed } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   items: null,
 
   weeks: computed('items.@each.{createdAt,tag}', function() {
