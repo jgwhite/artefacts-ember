@@ -3,7 +3,9 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
-    // Add options here
+    babel: {
+      optional: ['es7.decorators']
+    }
   });
 
   app.import('bower_components/aws-sdk-js/dist/aws-sdk.js');
