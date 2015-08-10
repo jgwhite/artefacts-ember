@@ -3,19 +3,13 @@
     <nav class="authenticated__header-nav">
       <ul class="authenticated__header-nav-list">
         <li class="authenticated__header-nav-list-item">
-          <b>{{link-to "Home" "authenticated.index"
-               class="authenticated__header-nav-link"
-               activeClass="authenticated__header-nav-link--active"}}</b>
+          {{link-to "Projects" "projects.index"
+            class="authenticated__header-nav-link"
+            activeClass="authenticated__header-nav-link--active"}}
         </li>
-        <li class="authenticated__header-nav-list-item">
-          {{link-to "Projects" "projects"
-             class="authenticated__header-nav-link"
-             activeClass="authenticated__header-nav-link--active"}}
-        </li>
+        {{portal-for name="header" class="authenticated__header-portal"}}
       </ul>
     </nav>
-
-    {{portal-for name="header" class="authenticated__header-portal"}}
 
     <button {{action "signOut"}} class="authenticated__header-sign-out-button">Sign out</button>
   </header>

@@ -11,6 +11,10 @@ export default Ember.Route.extend({
       firebase.unauth();
 
       this.transitionTo('sign-in');
+    },
+
+    error() {
+      this.send('signOut');
     }
   }
 });

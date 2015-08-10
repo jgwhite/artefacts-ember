@@ -7,7 +7,7 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('authenticated', { path: '' }, function() {
-    this.route('projects', { resetNamespace: true }, function() {
+    this.route('projects', { resetNamespace: true, path: '' }, function() {
       this.route('project', { path: ':project_id', resetNamespace: true }, function() {
         this.route('artefact', { path: 'artefacts/:artefact_id' });
       });

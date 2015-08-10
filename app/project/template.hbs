@@ -1,5 +1,8 @@
 {{#portal-content for="header"}}
-  <div class="header__project-name">{{model.name}}</div>
+  <li>
+    {{link-to model.name "project" model
+      class="authenticated__header-nav-link"
+      activeClass="authenticated__header-nav-link--active"}}</li>
 {{/portal-content}}
 
 {{#drop-zone on-drop="addFiles" class="project__drop-zone"}}
