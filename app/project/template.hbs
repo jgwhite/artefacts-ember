@@ -1,48 +1,12 @@
-{{#portal-content for="header"}}
-  <h1 class="header__title">
-    {{model.name}}
-  </h1>
+{{#portal-content for="toolbar"}}
+  {{model.name}}
 {{/portal-content}}
 
-{{#drop-zone on-drop="addFiles" class="project__drop-zone"}}
-  {{#group-by-week-and-tag items=model.artefacts as |weeks tags|}}
-    <table class="artefact-table">
-      <thead>
-        {{#sticky-element tagName="tr"}}
-          {{#each tags as |tag|}}
-            <th class="artefact-table__tag-cell">
-              {{tag}}
-            </th>
-          {{/each}}
-        {{/sticky-element}}
-      </thead>
-
-      <tbody>
-        {{#each weeks key="id" as |week|}}
-          <tr>
-            <th class="artefact-table__week-cell" colspan={{tags.length}}>
-              Week: {{moment-format week.date "D MMM YYYY"}}
-            </th>
-          </tr>
-          <tr>
-            {{#each week.tags key="name" as |tag|}}
-              <td class="artefact-table__items-cell">
-                {{#each tag.items as |item|}}
-                  {{artefact-thumb
-                     artefact=item
-                     on-view="viewArtefact"
-                     on-save="saveArtefact"
-                     on-rollback="rollbackArtefact"
-                     on-remove="removeArtefact"}}
-                {{/each}}
-                <span class="artefact-table__spacer">&nbsp;</span>
-              </td>
-            {{/each}}
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  {{/group-by-week-and-tag}}
+{{#drop-zone
+  on-drop="addFiles"
+  class="project__drop-zone"
+  receptive-class="project__drop-zone--active"}}
+  {{artefact-table artefacts=model.artefacts}}
 {{/drop-zone}}
 
 {{outlet}}

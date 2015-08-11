@@ -1,9 +1,15 @@
 import Ember from 'ember';
-const { $, get } = Ember;
+const { $, Component, computed, get } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'drop-zone',
-  classNameBindings: ['receptive:drop-zone--receptive'],
+  classNameBindings: ['receptiveClass'],
+
+  receptiveClass: computed('receptive', 'receptive-class', function() {
+    if (this.get('receptive')) {
+      return this.get('receptive-class');
+    }
+  }),
 
   dragEnter(event) {
     let types = event.dataTransfer.types;

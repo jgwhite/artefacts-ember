@@ -1,16 +1,23 @@
 import Ember from 'ember';
+const { Component, computed } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'artefact-thumb',
+  classNameBindings: ['isEditing:artefact-thumb--is-editing'],
 
   artefact: null,
   isEditing: false,
 
+  router: computed(function() {
+    return this.container.lookup('router:main');
+  }),
+
   actions: {
     view() {
       let artefact = this.get('artefact');
+      let router = this.get('router');
 
-      this.sendAction('on-view', artefact);
+      router.transitionTo('project.artefact', artefact);
     },
 
     edit() {

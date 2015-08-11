@@ -3,8 +3,6 @@ import { module, test } from 'qunit';
 
 module('Unit | Helper | math divide');
 
-// Replace this with your real tests.
 test('it works', function(assert) {
-  var result = mathDivide(42);
-  assert.ok(result);
+  assert.equal(mathDivide([42, 2]), 21);
 });

@@ -9,21 +9,16 @@
 </div>
 
 <div class="artefact-thumb__tools">
-  <button {{action "view"}}>View</button>
+  <button {{action "view"}} class="artefact-thumb__view-button">View</button>
+  <button {{action "edit"}} class="artefact-thumb__edit-button">Edit</button>
+  <button {{action "remove"}} class="artefact-thumb__remove-button">Remove</button>
 
   {{#if isEditing}}
-    <button {{action "cancel"}}>Cancel</button>
-  {{else}}
-    <button {{action "edit"}}>Edit</button>
-  {{/if}}
-
-  <button {{action "remove"}}>Remove</button>
-
-  {{#if isEditing}}
-    {{#x-form on-submit="update"}}
+    {{#x-form on-submit="update" class="artefact-thumb__edit-form"}}
       <input type="date" name="createdAt:date" value="{{moment-format artefact.createdAt "YYYY-MM-DD"}}"><br>
       <input type="text" name="tag" value="{{artefact.tag}}" placeholder="Tag"><br>
       <button type="submit">Save</button>
+      <button {{action "cancel"}}>Cancel</button>
     {{/x-form}}
   {{/if}}
 </div>

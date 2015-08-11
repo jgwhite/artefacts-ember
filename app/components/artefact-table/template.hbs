@@ -1,0 +1,30 @@
+<div class="artefact-table__tags">
+  {{#each tags as |tag|}}
+    <span class="artefact-table__tag">{{tag}}</span>
+  {{/each}}
+</div>
+
+<div class="artefact-table__weeks">
+  {{#each weeks key="id" as |week|}}
+    <div class="artefact-table__week">
+      <div class="artefact-table__week-heading">
+        <span>Week: {{moment-format week.date "D MMM YYYY"}}</span>
+      </div>
+      <div class="artefact-table__week-tags">
+        {{#each week.tags key="id" as |tag|}}
+          <div class="artefact-table__week-tag">
+            {{#each tag.artefacts as |item|}}
+              {{artefact-thumb
+                 artefact=item
+                 on-view="viewArtefact"
+                 on-save="saveArtefact"
+                 on-rollback="rollbackArtefact"
+                 on-remove="removeArtefact"
+                 class="artefact-table__artefact-thumb"}}
+            {{/each}}
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  {{/each}}
+</div>

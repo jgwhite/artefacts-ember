@@ -1,15 +1,17 @@
-<section class="authenticated">
-  <header class="header">
-    {{portal-for name="header" class="header__portal"}}
+<app>
+  <header class="app__header">
+    <nav class="toolbar">
+      {{portal-for name="toolbar" class="toolbar__portal"}}
 
-    {{link-to "Projects" "projects.index"
-      class="header__projects-button"
-      activeClass="header__projects-button--active"}}
+      {{link-to "Projects" "projects"
+        class="toolbar__projects-button"
+        activeClass="toolbar__projects-button--active"}}
 
-    <button {{action "signOut"}} class="header__sign-out-button">Sign out</button>
+      <button {{action "signOut"}} class="toolbar__sign-out-button">Sign out</button>
+    </nav>
   </header>
 
-  <main class="main">
+  <main class="app__main">
     {{outlet}}
   </main>
-</section>
+</app>

@@ -4,25 +4,26 @@ const { Component, computed, isEmpty } = Ember;
 const UNTAGGED = 'untagged';
 
 export default Component.extend({
-  tagName: '',
-  items: null,
+  tagName: 'artefact-table',
+  artefacts: computed(() => []),
 
-  tags: computed('items.@each.tag', function() {
-    let items = this.get('items');
+  tags: computed('artefacts.@each.tag', function() {
+    let artefacts = this.get('artefacts');
 
-    return items
+    return artefacts
       .mapBy('tag')
       .uniq()
       .reject(isEmpty)
+      .sort()
       .concat([UNTAGGED]);
   }),
 
-  weeks: computed('items.@each.{createdAt,tag}', 'tags', function() {
-    let items = this.get('items');
+  weeks: computed('artefacts.@each.{createdAt,tag}', 'tags', function() {
+    let artefacts = this.get('artefacts');
     let tags = this.get('tags');
     let weeks = [];
 
-    items.forEach(item => {
+    artefacts.forEach(item => {
       let date = startOfWeek(item.get('createdAt'));
       let id = Number(date);
       let tag = item.get('tag') || UNTAGGED;
@@ -32,14 +33,14 @@ export default Component.extend({
         week = {
           id,
           date,
-          tags: tags.map(name => ({ name, items: [] }))
+          tags: tags.map(name => makeTagObj(name))
         };
         weeks.push(week);
       }
 
-      let tagObj = week.tags.findBy('name', tag);
+      let tagObj = week.tags.findBy('id', tag);
 
-      tagObj.items.push(item);
+      tagObj.artefacts.push(item);
     });
 
     return weeks.sort((a, b) => b.id - a.id);
@@ -53,4 +54,12 @@ export default Component.extend({
 
 function startOfWeek(date) {
   return moment(date).startOf('week').toDate();
+}
+
+function makeTagObj(tag) {
+  return {
+    id: tag,
+    name: tag,
+    artefacts: []
+  };
 }

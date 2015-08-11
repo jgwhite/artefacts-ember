@@ -1,0 +1,90 @@
+artefact-table {
+  position: absolute;
+  top: 0; bottom: 0;
+  min-width: 100%;
+  overflow: auto;
+}
+
+.artefact-table__tags {
+  position: absolute;
+  line-height: $header-height;
+  top: 0;
+  height: $header-height;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0;
+  border-bottom: 1px solid #eee;
+}
+.artefact-table__tag {
+  display: inline-block;
+  width: $cell-size;
+  margin: 0;
+  font-size: 1rem;
+  text-align: center;
+  border-right: 1px solid #eee;
+
+  &:first-child {
+    padding-left: 1px;
+  }
+
+  &:last-child {
+    border-right: 0;
+    padding-right: 1px;
+  }
+}
+
+.artefact-table__weeks {
+  position: absolute;
+  top: $header-height + 1px;
+  bottom: 0;
+  overflow: auto;
+}
+
+.artefact-table__week-heading {
+  position: relative;
+  text-align: center;
+  line-height: 3em;
+
+  > span {
+    display: inline-block;
+    position: relative;
+    padding: 0 1em;
+    background: white;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    height: 1px;
+    background: #eee;
+    z-index: -1;
+  }
+}
+
+.artefact-table__week-tags {
+  overflow: hidden;
+  font-size: 0;
+  white-space: nowrap;
+}
+
+.artefact-table__week-tag {
+  display: inline-block;
+  width: $cell-size;
+  margin: 0 .5px;
+
+  font-size: 1rem;
+  vertical-align: top;
+
+  &:first-child {
+    margin-left: 1px;
+  }
+  &:last-child {
+    margin-right: 1px;
+  }
+}
+
+.artefact-table__artefact-thumb {
+  display: block;
+  margin: 1px auto;
+}

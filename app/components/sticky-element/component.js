@@ -1,7 +1,7 @@
 import Ember from 'ember';
-const { $, run } = Ember;
+const { Component } = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   classNames: ['sticky-element'],
 
   didInsertElement() {
