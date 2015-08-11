@@ -3,22 +3,39 @@ const { $, run } = Ember;
 
 export default Ember.Component.extend({
   didInsertElement() {
-    this._listener = this.updatePosition.bind(this);
-    $(window).on('scroll', this._listener);
+    this.oy = this.$().offset().top;
+    this.listener = this.onScroll.bind(this);
+    this.update = this.update.bind(this);
 
-    this._oy = this.$().offset().top;
+    window.addEventListener('scroll', this.listener);
+    window.addEventListener('wheel', this.listener);
   },
 
   willDestroyElement() {
-    $(window).off('scroll', this._listener);
+    window.removeEventListener('scroll', this.listener);
+    window.removeEventListener('wheel', this.listener);
   },
 
-  updatePosition() {
-    let sy = $(window).scrollTop();
-    let dy = Math.max(0, sy - this._oy);
+  onScroll() {
+    this.sy = window.scrollY;
+    this.requestTick();
+  },
 
-    this.$().css({
-      transform: `translateY(${dy}px)`
-    });
+  requestTick() {
+    if (this.isTicking || this.isDestroying || this.isDestroyed) {
+      return;
+    }
+
+    this.isTicking = true;
+
+    window.requestAnimationFrame(this.update);
+  },
+
+  update() {
+    let dy = Math.max(0, this.sy - this.oy);
+
+    this.element.style.transform = `translateY(${dy}px)`;
+
+    this.isTicking = false;
   }
 });
