@@ -19,76 +19,62 @@ body {
   height: 100%;
 }
 
-.authenticated__header {
-  position: absolute;
+.header {
+  position: fixed;
   top: 0; right: 0; left: 0;
   height: 32px;
+  line-height: 32px;
   border-bottom: 1px solid #eee;
   overflow: hidden;
-  z-index: 2;
-}
+  z-index: 100;
 
-.authenticated__main {
-  position: relative;
-  box-sizing: border-box;
-  padding-top: 33px;
-  height: 100%;
-}
+  text-align: center;
 
-.authenticated__header-nav {
-  display: block;
-  float: left;
+  background: white;
 }
-
-.authenticated__header-nav-list {
-  display: block;
+.header__portal {
+  display: inline-block;
+}
+.header__title {
   margin: 0;
-  padding: 0;
-  list-style: none outside;
-  overflow: hidden;
-}
-
-.authenticated__header-nav-list-item {
-  display: block;
-  float: left;
-  border-right: 1px solid #eee;
-}
-
-.authenticated__header-nav-link {
-  display: block;
-  padding: 4px 8px;
-  color: inherit;
-  text-decoration: none;
-}
-
-.authenticated__header-nav-link--active {
+  padding: 0 8px;
   background: #eee;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 }
-
-.authenticated__header-portal {
-  display: block;
-  float: left;
-}
-
-.header__project-name {
-  display: block;
-  padding: 4px 8px;
-  background: #eee;
-}
-
-.authenticated__header-sign-out-button {
+.header__projects-button,
+.header__sign-out-button {
   position: absolute;
-  top: 0; right: 0;
+  top: 0;
   margin: 0;
-  padding: 4px 8px;
+  padding: 0 8px;
   appearance: none;
   background: transparent;
   border: 0;
-  border-left: 1px solid #eee;
 
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  text-decoration: none;
+}
+.header__projects-button {
+  left: 0;
+  border-right: 1px solid #eee;
+}
+.header__projects-button--active {
+  background: #eee;
+}
+.header__sign-out-button {
+  right: 0;
+  border-left: 1px solid #eee;
+}
+
+.main {
+  position: relative;
+  box-sizing: border-box;
+  padding-top: 33px;
+  height: 100%;
 }
 
 .projects {
@@ -98,23 +84,29 @@ body {
 
 artefact-thumb {
   display: block;
+  position: relative;
+  margin: 2px auto;
   padding: 8px;
   box-sizing: border-box;
   text-align: center;
+  width: 200px; height: 200px;
+  background: #eee;
 }
-
 .artefact-thumb__img-container {
-  width: 128px; height: 128px;
+  width: 100%; height: 100%;
   margin: 0 auto;
-  cursor: pointer;
 }
 .artefact-thumb__img {
   max-width: 100%; max-height: 100%;
 }
-
-.artefact-thumb__meta {
-  margin-top: 4px;
-  font-size: .75rem;
+.artefact-thumb__tools {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  visibility: hidden;
+  background: hsla(0, 0%, 93%, .75);
+}
+artefact-thumb:hover .artefact-thumb__tools {
+  visibility: visible;
 }
 
 .project__drop-zone {
@@ -122,21 +114,8 @@ artefact-thumb {
   position: relative;
   min-height: 100%;
 }
-
 .drop-zone--receptive {
   background: yellow;
-}
-
-.project__name {
-  margin: 0;
-}
-
-.project__week-header {
-  font-size: 1rem;
-  padding: 8px;
-  margin: 0;
-  background: #eee;
-  clear: both;
 }
 
 artefact-viewer {
@@ -146,7 +125,6 @@ artefact-viewer {
   z-index: 10;
   background: rgba(0, 0, 0, .75);
 }
-
 .artefact-viewer__img-container {
   display: flex;
   position: absolute;
@@ -155,25 +133,46 @@ artefact-viewer {
   justify-content: center;
   pointer-events: none;
 }
-
 .artefact-viewer__img {
   max-width: 100%; max-height: 100%;
   pointer-events: auto;
 }
 
 .artefact-table {
+  margin: 0 auto;
   border-collapse: collapse;
-  table-layout: auto;
-  width: 100%;
+  table-layout: fixed;
+  white-space: nowrap;
 }
-.artefact-table__tag-heading {
+.artefact-table__tag-cell {
+  padding: 0;
+
+  white-space: nowrap;
+
   background: #eee;
 }
-.artefact-table__week-heading {
-  font-weight: normal;
+.artefact-table__week-cell {
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
+
+  font-weight: normal;
 }
-.artefact-table__cell {
+.artefact-table__items-cell {
+  width: 200px;
+  padding: 0 1px;
+
+  white-space: nowrap;
+
   vertical-align: top;
+}
+.artefact-table__items-cell:first-child {
+  padding-left: 2px;
+}
+.artefact-table__items-cell:last-child {
+  padding-right: 2px;
+}
+.artefact-table__spacer {
+  display: block;
+  width: 200px;
+  height: 0;
 }

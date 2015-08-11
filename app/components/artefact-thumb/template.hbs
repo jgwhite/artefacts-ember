@@ -1,4 +1,4 @@
-<div class="artefact-thumb__img-container" {{action "view"}}>
+<div class="artefact-thumb__img-container">
   {{#if artefact.file}}
     {{file-preview
       file=attrs.artefact.file
@@ -8,23 +8,22 @@
   {{/if}}
 </div>
 
-{{#if artefact.file}}
-  <div class="artefact-thumb__meta">
-    <em>Uploading…</em>
-  </div>
-{{/if}}
+<div class="artefact-thumb__tools">
+  <button {{action "view"}}>View</button>
 
-{{#if isEditing}}
-  <button {{action "cancel"}}>Cancel</button>
-{{else}}
-  <button {{action "edit"}}>Edit</button>
-{{/if}}
-<button {{action "remove"}}>Remove</button>
+  {{#if isEditing}}
+    <button {{action "cancel"}}>Cancel</button>
+  {{else}}
+    <button {{action "edit"}}>Edit</button>
+  {{/if}}
 
-{{#if isEditing}}
-  {{#x-form on-submit="update"}}
-    <input type="date" name="createdAt:date" value="{{moment-format artefact.createdAt "YYYY-MM-DD"}}"><br>
-    <input type="text" name="tag" value="{{artefact.tag}}" placeholder="Tag"><br>
-    <button type="submit">Save</button>
-  {{/x-form}}
-{{/if}}
+  <button {{action "remove"}}>Remove</button>
+
+  {{#if isEditing}}
+    {{#x-form on-submit="update"}}
+      <input type="date" name="createdAt:date" value="{{moment-format artefact.createdAt "YYYY-MM-DD"}}"><br>
+      <input type="text" name="tag" value="{{artefact.tag}}" placeholder="Tag"><br>
+      <button type="submit">Save</button>
+    {{/x-form}}
+  {{/if}}
+</div>

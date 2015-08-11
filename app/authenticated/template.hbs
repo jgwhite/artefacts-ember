@@ -1,20 +1,15 @@
 <section class="authenticated">
-  <header class="authenticated__header">
-    <nav class="authenticated__header-nav">
-      <ul class="authenticated__header-nav-list">
-        <li class="authenticated__header-nav-list-item">
-          {{link-to "Projects" "projects.index"
-            class="authenticated__header-nav-link"
-            activeClass="authenticated__header-nav-link--active"}}
-        </li>
-        {{portal-for name="header" class="authenticated__header-portal"}}
-      </ul>
-    </nav>
+  <header class="header">
+    {{portal-for name="header" class="header__portal"}}
 
-    <button {{action "signOut"}} class="authenticated__header-sign-out-button">Sign out</button>
+    {{link-to "Projects" "projects.index"
+      class="header__projects-button"
+      activeClass="header__projects-button--active"}}
+
+    <button {{action "signOut"}} class="header__sign-out-button">Sign out</button>
   </header>
 
-  <main class="authenticated__main">
+  <main class="main">
     {{outlet}}
   </main>
 </section>

@@ -2,6 +2,8 @@ import Ember from 'ember';
 const { $, run } = Ember;
 
 export default Ember.Component.extend({
+  classNames: ['sticky-element'],
+
   didInsertElement() {
     this.oy = this.$().offset().top;
     this.listener = this.onScroll.bind(this);

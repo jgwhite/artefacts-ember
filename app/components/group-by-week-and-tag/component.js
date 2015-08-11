@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import moment from 'moment';
-const { Component, computed } = Ember;
+const { Component, computed, isEmpty } = Ember;
 const UNTAGGED = 'untagged';
 
 export default Component.extend({
@@ -10,7 +10,11 @@ export default Component.extend({
   tags: computed('items.@each.tag', function() {
     let items = this.get('items');
 
-    return items.mapBy('tag').uniq().compact().concat([UNTAGGED]);
+    return items
+      .mapBy('tag')
+      .uniq()
+      .reject(isEmpty)
+      .concat([UNTAGGED]);
   }),
 
   weeks: computed('items.@each.{createdAt,tag}', 'tags', function() {
