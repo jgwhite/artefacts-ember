@@ -16,9 +16,6 @@
             {{#each tag.artefacts as |item|}}
               {{artefact-thumb
                  artefact=item
-                 on-view="viewArtefact"
-                 on-save="saveArtefact"
-                 on-rollback="rollbackArtefact"
                  on-remove="removeArtefact"
                  class="artefact-table__artefact-thumb"}}
             {{/each}}

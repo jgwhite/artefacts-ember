@@ -31,10 +31,6 @@ export default Ember.Route.extend({
       RSVP.all(promises).then(() => project.save());
     },
 
-    viewArtefact(artefact) {
-      this.transitionTo('project.artefact', artefact);
-    },
-
     closeArtefact() {
       this.transitionTo('project');
     },

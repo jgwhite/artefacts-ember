@@ -49,7 +49,13 @@ export default Component.extend({
   colWidth: computed('tags.length', function() {
     let n = this.get('tags.length');
     return `${100 / n}%`;
-  })
+  }),
+
+  actions: {
+    removeArtefact(artefact) {
+      this.sendAction('on-remove-artefact', artefact);
+    }
+  }
 });
 
 function startOfWeek(date) {

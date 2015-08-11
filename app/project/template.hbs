@@ -5,8 +5,10 @@
 {{#drop-zone
   on-drop="addFiles"
   class="project__drop-zone"
-  receptive-class="project__drop-zone--active"}}
-  {{artefact-table artefacts=model.artefacts}}
+  receptive-class="project__drop-zone--receptive"}}
+  {{artefact-table
+    artefacts=model.artefacts
+    on-remove-artefact="removeArtefact"}}
 {{/drop-zone}}
 
 {{outlet}}
