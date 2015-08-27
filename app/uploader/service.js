@@ -11,6 +11,7 @@ export default Service.extend({
         Bucket: 'artefacts-app',
         Key: key,
         Body: file,
+        ContentType: file.type,
         ACL: 'public-read'
       };
 

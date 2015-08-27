@@ -5,5 +5,6 @@ export default Model.extend({
   project: belongsTo('project', { async: true }),
   createdAt: attr('date'),
   url: attr('string'),
-  tag: attr('string')
+  tag: attr('string'),
+  contentType: attr('string')
 });

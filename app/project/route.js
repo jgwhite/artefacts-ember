@@ -51,6 +51,7 @@ function createArtefactFromFile(file, store, project, uploader) {
   let artefact = store.createRecord('artefact', {
     project,
     file,
+    contentType: file.type,
     createdAt: file.lastModifiedDate || new Date()
   });
   let key = artefact.get('id') + '/' + file.name;
